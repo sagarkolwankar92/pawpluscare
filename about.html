@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About Us - Paw Plus</title>
+<meta name="description" content="The story behind Paw Plus - science-backed, in-house supplements for everyday pet wellness.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%F0%9F%90%BE%3C/text%3E%3C/svg%3E">
+<style>
+
+  :root{
+    /* ---- Brand tokens (pulled from pawplus.care) ---- */
+    --navy:      #0E1B4D;   /* logo text + headings */
+    --navy-soft: #26314f;   /* body text */
+    --teal:      #108474;   /* brand accent */
+    --teal-dark: #0c6a5d;
+    --orange:    #F9AD65;   /* logo-paw orange */
+    --orange-dark:#EF9F4C;
+
+    --paper:     #ffffff;
+    --cream:     #FBF7F0;   /* soft alternate section bg */
+    --mist:      #F1F6F5;   /* faint teal-tinted bg */
+    --line:      #e7e3d8;
+    --muted:     #5b6473;
+
+    --maxw: 1160px;
+    --radius: 16px;
+    --shadow: 0 12px 34px rgba(14,27,77,.08);
+    --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:var(--font);
+    color:var(--navy-soft);
+    background:var(--paper);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{color:var(--navy);line-height:1.15;margin:0 0 .4em;font-weight:800;letter-spacing:-.01em}
+  h2{font-size:clamp(1.6rem,3.4vw,2.4rem)}
+  h3{font-size:1.15rem;font-weight:700}
+  p{margin:0 0 1em}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .center{text-align:center}
+  .lead{color:var(--muted);font-size:1.05rem;max-width:60ch}
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+    font-weight:700;font-size:1rem;padding:.85rem 1.6rem;border-radius:999px;
+    border:2px solid transparent;cursor:pointer;transition:transform .15s ease, background .2s ease, box-shadow .2s ease;
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn-primary{background:var(--teal);color:#fff}
+  .btn-primary:hover{background:var(--teal-dark);box-shadow:0 8px 20px rgba(16,132,116,.28)}
+  .btn-accent{background:var(--orange);color:var(--navy)}
+  .btn-accent:hover{background:var(--orange-dark);box-shadow:0 8px 20px rgba(247,148,29,.30)}
+  .btn-ghost{background:transparent;color:var(--navy);border-color:var(--navy)}
+  .btn-ghost:hover{background:var(--navy);color:#fff}
+  .btn[aria-disabled="true"]{background:#c9cdd6;color:#fff;pointer-events:none}
+
+  /* ---------- Announcement bar ---------- */
+  .announce{background:var(--navy);color:#fff;text-align:center;font-size:.9rem;font-weight:600;padding:.55rem 12px}
+  .announce a{text-decoration:underline;text-underline-offset:2px}
+
+  /* ---------- Header ---------- */
+  header.site{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid var(--line)}
+  .navbar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.6rem 22px;max-width:var(--maxw);margin:0 auto}
+  .logo{display:flex;align-items:center;gap:.55rem;font-weight:800;font-size:1.4rem;color:var(--navy)}
+  .logo img{height:44px;width:auto}
+  .logo .fallback{display:none}
+  .logo .plus{color:var(--orange)}
+  .nav-links{display:flex;align-items:center;gap:1.6rem}
+  .nav-links a{position:relative;font-weight:600;color:var(--navy);font-size:.98rem;padding-bottom:3px}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--teal);border-radius:2px;transition:width .22s ease}
+  .nav-links a:hover{color:var(--teal)}
+  .nav-links a:hover::after{width:100%}
+  .nav-social{display:flex;gap:.6rem;align-items:center}
+  .nav-social a{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--mist);color:var(--navy)}
+  .nav-social a:hover{background:var(--teal);color:#fff}
+  .nav-social svg{width:17px;height:17px}
+  .menu-btn{display:none;background:none;border:0;cursor:pointer;padding:6px}
+  .menu-btn span{display:block;width:24px;height:2px;background:var(--navy);margin:5px 0;border-radius:2px}
+
+  /* ---------- Hero ---------- */
+  .hero{background:linear-gradient(180deg,var(--mist),#fff)}
+  .hero .grid{display:grid;grid-template-columns:1.05fr 1fr;gap:44px;align-items:center;padding:66px 0 70px}
+  .hero h1{font-size:clamp(2rem,4.6vw,3.2rem);margin-bottom:.35em}
+  .hero .lead{font-size:1.12rem;margin-bottom:1.6rem}
+  .hero .cta-row{display:flex;gap:.8rem;flex-wrap:wrap}
+  .hero-media{aspect-ratio:1/1;border-radius:24px;overflow:hidden;background:var(--cream);box-shadow:var(--shadow)}
+
+  /* image placeholder pattern: shown only when the <img> fails/absent */
+  .ph{position:relative;background:
+      radial-gradient(circle at 30% 30%, #fff, var(--cream));
+      display:grid;place-items:center}
+  .ph::after{content:attr(data-label);position:absolute;inset:0;display:grid;place-items:center;
+      color:var(--muted);font-size:.85rem;font-weight:600;letter-spacing:.02em;text-align:center;padding:10px}
+  .ph img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover}
+
+  /* ---------- Marquee ---------- */
+  .marquee{background:var(--navy);color:#fff;overflow:hidden;padding:.9rem 0}
+  .marquee__track{display:flex;gap:2.6rem;white-space:nowrap;width:max-content;animation:scroll 24s linear infinite}
+  .marquee__item{font-weight:600;font-size:1rem;opacity:.95}
+  .marquee__item .plus{color:var(--orange);margin-right:.15em}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ---------- Section shell ---------- */
+  section.block{padding:72px 0;scroll-margin-top:78px}
+  section.block.alt{background:var(--cream)}
+  .sec-head{max-width:64ch;margin:0 auto 2.6rem}
+  .sec-head p{color:var(--muted);font-size:1.05rem;margin:0}
+
+  /* ---------- Products ---------- */
+  .products{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .2s ease, transform .2s ease}
+  .card:hover{box-shadow:var(--shadow);transform:translateY(-4px)}
+  .card .media{aspect-ratio:1/1;background:var(--mist)}
+  .card .body{padding:20px 20px 22px;display:flex;flex-direction:column;flex:1}
+  .card h3{min-height:2.6em}
+  .price{display:flex;align-items:baseline;gap:.55rem;margin:.2rem 0 1.1rem}
+  .price .now{font-size:1.35rem;font-weight:800;color:var(--navy)}
+  .price .was{color:var(--muted);text-decoration:line-through;font-size:1rem}
+  .price .save{background:#fdeede;color:var(--navy);font-weight:700;font-size:.75rem;padding:.15rem .5rem;border-radius:6px}
+  .card .btn{margin-top:auto;width:100%}
+
+  /* ---------- Ingredients ---------- */
+  .ing{display:grid;grid-template-columns:1fr auto 1fr;gap:36px;align-items:center;margin-top:2.4rem}
+  .ing .col{display:flex;flex-direction:column;gap:1.6rem}
+  .ing .col.right{text-align:left}
+  .ing .item h3{color:var(--teal);margin-bottom:.15em}
+  .ing .item p{margin:0;color:var(--muted);font-size:.95rem}
+  .ing-photo{width:270px;height:270px;border-radius:50%;overflow:hidden;background:var(--cream);box-shadow:var(--shadow)}
+
+  /* ---------- Why / value props ---------- */
+  .why{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:2rem}
+  .why .item{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px}
+  .why .ico{width:56px;height:56px;border-radius:14px;background:var(--mist);display:grid;place-items:center;margin-bottom:1rem;color:var(--teal)}
+  .why .ico svg{width:28px;height:28px}
+  .why p{margin:0;color:var(--muted);font-size:.97rem}
+
+  /* ---------- Reviews ---------- */
+  .rev-head{display:flex;flex-direction:column;align-items:center;gap:.4rem;margin-bottom:2.2rem}
+  .stars{color:var(--teal);font-size:1.4rem;letter-spacing:2px}
+  .rev-meta{color:var(--muted);font-weight:600}
+  .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .review{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .review .s{color:var(--orange);letter-spacing:1px;margin-bottom:.5rem}
+  .review p{font-size:.97rem}
+  .review .who{color:var(--navy);font-weight:700;margin:0;font-size:.92rem}
+
+  /* ---------- FAQ ---------- */
+  .faq-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:start}
+  .faq-photo{aspect-ratio:1/1;border-radius:var(--radius);overflow:hidden;background:var(--cream);box-shadow:var(--shadow)}
+  details.faq{border-bottom:1px solid var(--line);padding:.4rem 0}
+  details.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;
+      padding:1rem 0;font-weight:700;color:var(--navy);font-size:1.02rem}
+  details.faq summary::-webkit-details-marker{display:none}
+  details.faq summary .chev{flex:0 0 auto;width:18px;height:18px;stroke:var(--teal);stroke-width:2.4;stroke-linecap:round;fill:none;transition:transform .2s ease}
+  details.faq[open] summary .chev{transform:rotate(45deg)}
+  details.faq .ans{color:var(--muted);padding:0 0 1.1rem;font-size:.97rem}
+  details.faq .ans strong{color:var(--navy-soft)}
+
+  /* ---------- Blog ---------- */
+  .posts{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:1.6rem}
+  .post{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px 28px;transition:box-shadow .2s ease}
+  .post:hover{box-shadow:var(--shadow)}
+  .post time{color:var(--teal);font-weight:700;font-size:.82rem}
+  .post h3{margin:.5rem 0 .5rem;font-size:1.2rem}
+  .post p{color:var(--muted);margin:0;font-size:.95rem}
+
+  /* ---------- Footer ---------- */
+  footer.site{background:var(--navy);color:#cfd6e6;padding:52px 0 30px}
+  footer .cols{display:flex;flex-wrap:wrap;gap:36px;justify-content:space-between;align-items:flex-start}
+  footer .brand{max-width:34ch}
+  footer .brand .logo{color:#fff;margin-bottom:.8rem}
+  footer .brand .logo img{height:40px;width:auto;background:#fff;padding:7px 11px;border-radius:10px}
+  footer .brand .logo .fallback{color:#fff}
+  footer .brand p{color:#aeb7cd;font-size:.95rem}
+  footer nav{display:flex;gap:2.4rem;flex-wrap:wrap}
+  footer h4{color:#fff;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;margin:0 0 .9rem}
+  footer nav a{display:block;color:#aeb7cd;padding:.28rem 0;font-size:.95rem}
+  footer nav a:hover{color:#fff}
+  footer .social{display:flex;gap:.6rem;margin-top:.4rem}
+  footer .social a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center;color:#fff}
+  footer .social a:hover{background:var(--teal)}
+  footer .social svg{width:17px;height:17px}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:36px;padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:#8b95b0;font-size:.85rem}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:900px){
+    .hero .grid{grid-template-columns:1fr;gap:26px;padding:44px 0 48px}
+    .hero-media{max-width:440px;margin:0 auto;order:-1}
+    .products,.why,.reviews{grid-template-columns:1fr 1fr}
+    .faq-grid{grid-template-columns:1fr}
+    .faq-photo{max-width:460px;margin:0 auto}
+    .ing{grid-template-columns:1fr;gap:24px;justify-items:center;text-align:center}
+    .ing .col{align-items:center}
+    .posts{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);
+        flex-direction:column;gap:0;padding:8px 0}
+    .nav-links.open{display:flex}
+    .nav-links a{padding:.8rem 22px;width:100%}
+    .nav-social{display:none}
+    .menu-btn{display:block}
+    .navbar{position:relative}
+    .products,.why,.reviews{grid-template-columns:1fr}
+    section.block{padding:52px 0}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .marquee__track{animation:none}
+    *{scroll-behavior:auto}
+  }
+
+
+  /* =====================================================================
+     Product detail page (shared with product pages)
+     ===================================================================== */
+  .breadcrumb{font-size:.85rem;color:var(--muted);margin-bottom:1rem}
+  .breadcrumb a{color:var(--muted)}
+  .breadcrumb a:hover{color:var(--teal)}
+
+  .pdp-hero{padding:32px 0 60px;background:linear-gradient(180deg,var(--mist),#fff)}
+  .pdp-hero .grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  .gallery .main{aspect-ratio:1/1;border-radius:20px;overflow:hidden;background:var(--cream);box-shadow:var(--shadow)}
+  .gallery .thumbs{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
+  .gallery .thumbs .ph{flex:0 0 calc(25% - 9px);aspect-ratio:1/1;border-radius:12px;overflow:hidden}
+  .gallery .thumbs .ph::after{font-size:.6rem}
+
+  .carousel{position:relative;border-radius:20px;overflow:hidden;background:var(--cream);box-shadow:var(--shadow)}
+  .cframe{aspect-ratio:1/1}
+  .cframe img{width:100%;height:100%;object-fit:cover;display:block}
+  .cbtn{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:0;background:rgba(255,255,255,.9);display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 12px rgba(14,27,77,.15);z-index:2;transition:background .15s ease}
+  .cbtn:hover{background:#fff}
+  .cbtn.prev{left:12px}.cbtn.next{right:12px}
+  .cbtn svg{width:20px;height:20px;stroke:var(--navy);stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .cdots{position:absolute;bottom:12px;left:0;right:0;display:flex;justify-content:center;gap:8px;z-index:2}
+  .cdot{width:8px;height:8px;border-radius:50%;background:rgba(14,27,77,.28);border:0;padding:0;cursor:pointer}
+  .cdot.is-active{background:var(--teal)}
+  .rmarquee{overflow:hidden;position:relative;padding:6px 0;--rgap:20px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+  .rmarquee__track{display:flex;gap:var(--rgap);width:max-content;animation:rscroll 45s linear infinite}
+  .rmarquee:hover .rmarquee__track{animation-play-state:paused}
+  @keyframes rscroll{from{transform:translateX(0)}to{transform:translateX(calc(-50% - (var(--rgap) / 2)))}}
+  .rcard{flex:0 0 clamp(260px,80vw,330px);background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;box-shadow:var(--shadow)}
+  .rcard .s{color:var(--orange-dark);letter-spacing:2px;margin-bottom:.5rem}
+  .rcard p{font-size:.95rem;margin:0 0 .8rem}
+  .rcard .who{color:var(--navy);font-weight:700;margin:0;font-size:.9rem}
+  @media (prefers-reduced-motion:reduce){.rmarquee__track{animation:none;flex-wrap:wrap;justify-content:center;width:auto}}
+  .buybox h1{font-size:clamp(1.6rem,3.4vw,2.15rem);margin-bottom:.5rem}
+  .buybox .tag{font-weight:700;color:var(--navy);font-size:1.05rem;margin-bottom:.5rem}
+  .buybox .intro{color:var(--muted);margin-bottom:1.2rem}
+  .benefits{list-style:none;padding:0;margin:0 0 1.3rem;display:grid;gap:.55rem}
+  .benefits li{display:flex;gap:.6rem;align-items:flex-start;font-weight:500;color:var(--navy-soft)}
+  .benefits li .e{flex:0 0 auto}
+  .net{font-size:.85rem;color:var(--muted);font-weight:600;margin:.2rem 0 .4rem}
+  .buybox .price{margin:.2rem 0 1rem}
+  .trust-list{list-style:none;padding:0;margin:0 0 1.3rem;display:grid;gap:.4rem}
+  .trust-list li{color:var(--navy-soft);font-size:.95rem;display:flex;gap:.5rem;align-items:center}
+  .trust-list li::before{content:"✔";color:var(--teal);font-weight:800}
+  .buybox .btn{width:100%;max-width:340px}
+  .pdp-quote{margin-top:1.2rem;padding:14px 18px;background:var(--mist);border-radius:12px;font-size:.95rem;color:var(--navy-soft)}
+  .pdp-quote .who{display:block;margin-top:.35rem;color:var(--muted);font-weight:600;font-size:.85rem}
+
+  .trust-strip{background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .trust-strip .row{display:flex;flex-wrap:wrap;justify-content:center;gap:34px;padding:22px 0}
+  .trust-strip .t{display:flex;align-items:center;gap:.6rem;font-weight:700;color:var(--navy);font-size:.95rem}
+  .trust-strip .t .dot{width:26px;height:26px;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--teal);box-shadow:var(--shadow);font-size:.8rem}
+
+  .narrow{max-width:760px;margin:0 auto}
+  .ingredients-list{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px 26px;color:var(--navy-soft);line-height:1.85}
+
+  .vet{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;max-width:860px;margin:0 auto}
+  .vet .pic{width:150px;height:150px;border-radius:50%;overflow:hidden;background:var(--cream);box-shadow:var(--shadow)}
+  .vet blockquote{margin:0;font-size:1.05rem;color:var(--navy-soft);font-style:italic}
+  .vet .name{margin-top:.6rem;font-weight:700;color:var(--navy);font-style:normal}
+  .vet .name span{display:block;font-weight:500;color:var(--muted);font-size:.85rem}
+
+  .quad{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:2rem}
+  .quad .item{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+  .quad .item .pic{aspect-ratio:4/3;background:var(--mist)}
+  .quad .item .txt{padding:18px 20px}
+  .quad .item h3{color:var(--teal);font-size:1rem;margin-bottom:.3em}
+  .quad .item p{margin:0;color:var(--muted);font-size:.9rem}
+
+  .problem{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .problem .pic{aspect-ratio:3/4;max-width:420px;margin:0 auto;border-radius:var(--radius);overflow:hidden;background:var(--mist);box-shadow:var(--shadow)}
+  .problem h2{margin-bottom:.6rem}
+  .problem p{color:var(--muted);margin:0}
+  .problem .pic img{object-fit:contain}
+
+  .stages{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:2rem}
+  .stages .item{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px}
+  .stages .item .n{width:30px;height:30px;border-radius:50%;background:var(--teal);color:#fff;font-weight:800;display:grid;place-items:center;font-size:.9rem;margin-bottom:.9rem}
+  .stages .item h3{font-size:1.02rem}
+  .stages .item p{margin:0;color:var(--muted);font-size:.94rem}
+
+  .final-cta{text-align:center}
+  .final-cta .btn{max-width:340px;margin:1.2rem auto 0}
+
+  .cross{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:1.8rem auto 0;max-width:760px}
+  .cross a{display:flex;align-items:center;gap:16px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px;transition:box-shadow .2s ease,transform .2s ease}
+  .cross a:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+  .cross .pic{width:76px;height:76px;border-radius:12px;overflow:hidden;background:var(--mist);flex:0 0 auto}
+  .cross .meta strong{display:block;color:var(--navy);font-size:1rem}
+  .cross .meta span{color:var(--muted);font-size:.88rem}
+  .cross .meta .go{color:var(--teal);font-weight:700;font-size:.85rem}
+
+  /* homepage product cards now link to product pages */
+  .card a.media{display:block}
+  .card h3 a{color:inherit}
+  .card h3 a:hover{color:var(--teal)}
+
+  @media (max-width:900px){
+    .pdp-hero .grid{grid-template-columns:1fr;gap:28px}
+    .gallery .main{max-width:460px;margin:0 auto}
+    .quad{grid-template-columns:1fr 1fr}
+    .problem{grid-template-columns:1fr;gap:22px}
+    .problem .pic{max-width:460px;margin:0 auto;order:-1}
+    .stages{grid-template-columns:1fr}
+    .vet{grid-template-columns:1fr;text-align:center;justify-items:center}
+    .cross{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    .quad{grid-template-columns:1fr}
+    .trust-strip .row{gap:16px}
+  }
+
+
+  /* About / Contact pages */
+  .article h1{margin-bottom:.6rem}
+  .article h2{margin-top:1.8rem;font-size:1.25rem}
+  .article p{color:var(--navy-soft)}
+  .article .lead{color:var(--muted)}
+  .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:1.8rem}
+  .cinfo{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px}
+  .cinfo h3{color:var(--teal);font-size:.9rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem}
+  .cinfo a{color:var(--navy);font-weight:600;word-break:break-word}
+  .cinfo a:hover{color:var(--teal)}
+  .cinfo p{margin:0;color:var(--muted);font-size:.95rem;line-height:1.7}
+  @media (max-width:760px){.contact-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="announce"><strong>Flat 40% OFF</strong> on all supplements · <a href="index.html#products">Shop the offer</a></div>
+
+<header class="site">
+  <div class="navbar">
+    <a class="logo" href="index.html" aria-label="Paw Plus home">
+      <img src="assets/logo.png" alt="Paw Plus" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+      <span class="fallback">Paw<span class="plus">+</span></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html#products">Shop</a>
+      <a href="index.html#ingredients">Why Paw+</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="about.html">About</a>
+    </nav>
+    <div class="nav-social">
+      <a href="https://www.facebook.com/pawpluscare" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.7l.4-3.1h-3.1V8.9c0-.9.25-1.5 1.5-1.5H17V4.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1v2.3H8v3.1h2.6V22z"/></svg></a>
+      <a href="https://www.instagram.com/pawpluscare/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<section class="block"><div class="wrap narrow article">
+  <div class="breadcrumb"><a href="index.html">Home</a> · About us</div>
+  <h1>Paw Plus - A Grandfather's Promise: Daily Care, Lasting Wellness</h1>
+  <h2>Our beginning</h2>
+  <p>It started with April. As a devoted pet parent and scientist, Dr. Nandkishor Bhikne (PhD, Pharma) watched his Labrador struggle, and he didn't wait for a generic supplement to show up in the market. Instead, he delved into research - spending a year analyzing herbal pharmacology, nutritional synergies, and efficacy - until he built a formula he truly trusted.</p>
+  <h2>Who we are</h2>
+  <p>Dr. Bhikne holds a PhD in pharmaceutical sciences and brings over two decades of professional experience across herbal medicine, personal care, pet care and botany. Leveraging this unique blend of expertise, Paw + is not just another D2C brand - we manufacture our own supplements in-house, enabling tight control over ingredient sourcing, formulation quality, and testing protocols.</p>
+  <h2>Our purpose</h2>
+  <p>Daily well-being for pets is highly ignored in the pet care industry. Supplements are often reactive patches rather than preventive care. Paw + changes that: we're on a mission to make wellness an everyday ritual, not just an emergency fix. Because routine care today builds vitality tomorrow.</p>
+  <h2>What makes Paw + stand out</h2>
+  <ul class="trust-list">
+    <li>Scientifically backed formulations vetted by pet nutritionists</li>
+    <li>In-house manufacture, ensuring full transparency and safety</li>
+    <li>A focus on holistic, preventive care, not just reactive treatment</li>
+    <li>Developed from real-world experience and empathy for pets and owners</li>
+  </ul>
+  <h2>Brand promise</h2>
+  <p>At Paw +, every jar reflects Dr. Bhikne's promise to April and to countless pets and owners: daily care, lasting wellness. Whether it's digestive balance, joint mobility, or skin and coat health - you'll know exactly what's inside, because we make it ourselves.</p>
+</div></section>
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div class="brand">
+        <a class="logo" href="index.html">
+          <img src="assets/logo.png" alt="Paw Plus" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+          <span class="fallback">Paw<span class="plus">+</span></span>
+        </a>
+        <p>100% natural, vet-approved supplements for a healthier, happier pup. Made with love in India.</p>
+        <div class="social">
+          <a href="https://www.facebook.com/pawpluscare" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.7l.4-3.1h-3.1V8.9c0-.9.25-1.5 1.5-1.5H17V4.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1v2.3H8v3.1h2.6V22z"/></svg></a>
+          <a href="https://www.instagram.com/pawpluscare/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        </div>
+      </div>
+      <nav>
+        <div>
+          <h4>Shop</h4>
+          <a href="belly-boost.html">Belly Boost</a>
+          <a href="glow-up.html">Glow Up</a>
+          <a href="happy-hips.html">Happy Hips</a>
+        </div>
+        <div>
+          <h4>Learn</h4>
+          <a href="index.html#ingredients">Why Paw+</a>
+          <a href="index.html#faq">FAQ</a>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <a href="about.html">About us</a>
+          <a href="contact.html">Contact us</a>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Paw Plus. All rights reserved.</span>
+      <span>Made with love in India 🐾</span>
+    </div>
+  </div>
+</footer>
+<script>
+  const menuBtn=document.getElementById("menuBtn");
+  const navLinks=document.getElementById("navLinks");
+  menuBtn.addEventListener("click",function(){var o=navLinks.classList.toggle("open");menuBtn.setAttribute("aria-expanded",o);});
+  document.getElementById("year").textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
